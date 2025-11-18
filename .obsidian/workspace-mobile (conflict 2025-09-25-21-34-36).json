@@ -1,0 +1,241 @@
+{
+  "main": {
+    "id": "0a1a0fd2da27bc7a",
+    "type": "split",
+    "children": [
+      {
+        "id": "f94559813043acd4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e371b9b6e34a0991",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "attachments/Pasted image 20250911094325.png"
+              },
+              "icon": "lucide-image",
+              "title": "Pasted image 20250911094325"
+            }
+          },
+          {
+            "id": "309957438b89b05b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Projects/Best.so/LLM-AI-SEO-Strategy.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "LLM-AI-SEO-Strategy"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "bf6db8d064f99dcf",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "b40b23d3be2ec189",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical",
+            "autoReveal": false
+          },
+          "icon": "lucide-folder-closed",
+          "title": "Files"
+        }
+      },
+      {
+        "id": "f2a0dbc37919d89d",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          },
+          "icon": "lucide-search",
+          "title": "Search"
+        }
+      },
+      {
+        "id": "492a441c024e7673",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-tags",
+          "title": "Tags"
+        }
+      },
+      {
+        "id": "65d1d2cc5838b646",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {},
+          "icon": "lucide-bookmark",
+          "title": "Bookmarks"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "f2d949abebde8855",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "b1fdd4fb64419ad5",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "Reminders.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-coming-in",
+          "title": "Backlinks"
+        }
+      },
+      {
+        "id": "708bc03c4b988d98",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "Reminders.md",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-going-out",
+          "title": "Outgoing links"
+        }
+      },
+      {
+        "id": "9f939401411a9267",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "Reminders.md",
+            "followCursor": false,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-list",
+          "title": "Outline"
+        }
+      },
+      {
+        "id": "4516c463ad129de6",
+        "type": "leaf",
+        "state": {
+          "type": "copilot-chat-view",
+          "state": {},
+          "icon": "lucide-ghost",
+          "title": "copilot-chat-view"
+        }
+      },
+      {
+        "id": "1354f6fd6645f9fc",
+        "type": "leaf",
+        "state": {
+          "type": "journal-calendar",
+          "state": {},
+          "icon": "calendar-days",
+          "title": "Calendar"
+        }
+      }
+    ],
+    "currentTab": 3
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "309957438b89b05b",
+  "lastOpenFiles": [
+    "Areas/Daily Notes/25, September, 2025 (Thursday).md",
+    "Areas/Daily Notes/20, September, 2025 (Saturday).md",
+    "Proposal for Best.so.md",
+    "Projects/Best.so/brief.md",
+    "Projects/Best.so/LLM-AI-SEO-Strategy.md",
+    "Projects/Best.so/Meeting Minutes - Best.so.md",
+    "Projects/Best.so/diary.code-workspace",
+    "Projects/Best.so",
+    "Git Env Variables.md",
+    "Areas/Daily Notes/25, September, 2025 (Thursday) (conflict 2025-09-25-18-24-20).md",
+    "Projects/SNH Cashews Brand Naming/Implementation Plan - SNH Cashews Brand Package.md",
+    "Projects/SNH Cashews Brand Naming/Brand Naming Proposal.md",
+    "Projects/SNH Cashews Brand Naming/Alex Hormozi Offer Stack - Brand Naming.md",
+    "Areas/Daily Notes/18, September, 2025 (Thursday).md",
+    "Areas/Daily Notes/15, September, 2025 (Monday).md",
+    "Areas/Daily Notes/13, September, 2025 (Saturday).md",
+    "attachments/Pasted image 20250911094325.png",
+    "Notes about self/Behavioral Patterns.md",
+    "Areas/Daily Notes/11, September, 2025 (Thursday).md",
+    "Untitled.md",
+    "Reminders.md",
+    "Tasks.md",
+    "copilot-custom-prompts/Rewrite as tweet thread.md",
+    "copilot-custom-prompts/Rewrite as tweet.md",
+    "copilot-custom-prompts/Remove URLs.md",
+    "copilot-custom-prompts/Generate glossary.md",
+    "copilot-custom-prompts/Generate table of contents.md",
+    "copilot-custom-prompts/Make longer.md",
+    "copilot-custom-prompts/Make shorter.md",
+    "copilot-custom-prompts",
+    "Notes about self",
+    "Projects/SMH Cashews",
+    "Projects/Rasvihar Email Marketing",
+    "Projects/Karuna Exam",
+    "Projects/Karuna Database Management System",
+    "Projects/Karuna Club Registration",
+    "Projects/Kapil Groups"
+  ]
+}

@@ -1,0 +1,190 @@
+{
+    "name": "Email Automator 📧 (n8n)",
+    "nodes": [
+        {
+            "parameters": {
+                "operation": "read",
+                "sheetId": "",
+                "range": "All mails!A:AZ",
+                "options": {
+                    "valueRenderMode": "FORMATTED_VALUE",
+                    "dateTimeRenderOption": "FORMATTED_STRING",
+                    "returnAll": false,
+                    "limit": 10
+                },
+                "access": "spreadsheetId",
+                "spreadsheetId": "1omA4MPiNBXxOluAxUwC02clImRuPjuSu1qPjRpBWrwA",
+                "dataPropertyName": "rows"
+            },
+            "id": "GoogleSheetsRead",
+            "name": "Google Sheets - Read",
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 4,
+            "position": [
+                -520,
+                300
+            ],
+            "credentials": {
+                "googleSheetsOAuth2Api": {
+                    "id": "",
+                    "name": "Google Sheets OAuth2"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "conditions": {
+                    "boolean": [],
+                    "string": [
+                        {
+                            "value1": "={{$json[\"email_1_sending_status\"]}}",
+                            "operation": "equal",
+                            "value2": "pending"
+                        }
+                    ],
+                    "number": [],
+                    "collection": []
+                }
+            },
+            "id": "IfPending",
+            "name": "IF Pending",
+            "type": "n8n-nodes-base.if",
+            "typeVersion": 2,
+            "position": [
+                -240,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "fromEmail": "",
+                "toEmail": "={{$json[\"email\"]}}",
+                "subject": "={{$json[\"email_1_subject\"]}}",
+                "text": "={{$json[\"email_1_body\"]}}",
+                "options": {
+                    "priority": "normal"
+                }
+            },
+            "id": "EmailSend",
+            "name": "Email Send",
+            "type": "n8n-nodes-base.emailSend",
+            "typeVersion": 3,
+            "position": [
+                40,
+                300
+            ],
+            "credentials": {
+                "smtp": {
+                    "id": "",
+                    "name": "Gift Yuukke (SMTP)"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "keepOnlySet": false,
+                "values": {
+                    "string": [
+                        {
+                            "name": "email_1_sending_status",
+                            "value": "completed"
+                        }
+                    ]
+                }
+            },
+            "id": "SetStatusCompleted",
+            "name": "Set Status = completed",
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 2,
+            "position": [
+                300,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "update",
+                "access": "spreadsheetId",
+                "spreadsheetId": "1omA4MPiNBXxOluAxUwC02clImRuPjuSu1qPjRpBWrwA",
+                "range": "All mails",
+                "key": "index",
+                "options": {
+                    "valueInputMode": "USER_ENTERED",
+                    "updateAllDuplicates": false
+                }
+            },
+            "id": "GoogleSheetsUpdate",
+            "name": "Google Sheets - Update",
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 4,
+            "position": [
+                560,
+                300
+            ],
+            "credentials": {
+                "googleSheetsOAuth2Api": {
+                    "id": "",
+                    "name": "Google Sheets OAuth2"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Google Sheets - Read": {
+            "main": [
+                [
+                    {
+                        "node": "IF Pending",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "IF Pending": {
+            "main": [
+                [
+                    {
+                        "node": "Email Send",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                []
+            ]
+        },
+        "Email Send": {
+            "main": [
+                [
+                    {
+                        "node": "Set Status = completed",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Set Status = completed": {
+            "main": [
+                [
+                    {
+                        "node": "Google Sheets - Update",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {
+        "executionOrder": "v1",
+        "saveManualExecutions": false
+    },
+    "pinData": {},
+    "meta": {
+        "templateCredsSetup": true
+    },
+    "versionId": "email-automator-n8n-v1"
+}
+

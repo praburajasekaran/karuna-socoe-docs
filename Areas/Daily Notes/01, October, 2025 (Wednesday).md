@@ -1,0 +1,5 @@
+- We went to [[Chimbu]]'s house for golu. 
+	- [[Kimaya]] was her usual singing self. Always ready to sing. She sang Pullanguzhal kodutha moongilgale... 
+	- [[Kanya]] was lovely, playing with her father [[Chimbu]]. 
+	- [[Chimbu]]'s father works in [[SPIC]] as a chef. He's getting retired in [[30, November, 2025 (Saturday)]]
+- 

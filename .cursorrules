@@ -1,0 +1,67 @@
+# Cursor Rules for Prabu's Diary Project
+
+## Core Behavioral Patterns to Document
+- **Night Productivity**: User gets "worked up" and completes 90% of tasks during late evening sessions
+- **Communication Timing**: Conscious about not calling clients late at night, prefers morning calls
+- **Delivery Preference**: Likes to send completed work before lunch when possible
+- **Mask Wearing**: Very difficult to put down mask even in intimate relationships
+- **Intimacy Challenges**: Not very intimate with anyone including self
+- **Self-Protection**: Always puts up acceptable front, rarely shares true thoughts or fears
+- **Task Completion Drive**: High motivation to finish tasks once started
+- **Client Focus**: Prioritizes client needs and deadlines over personal boundaries
+
+## Mandatory Workflow for Detailed Instructions
+
+### 1. ALWAYS Create Detailed Todo List First
+When user provides detailed instructions or updates:
+- Use `todo_write` tool to create comprehensive task list
+- Break down complex tasks into specific, actionable items
+- Include context, deadlines, and dependencies
+- Mark tasks as pending/in_progress/completed appropriately
+
+### 2. Document Behavioral Patterns
+- Update `Notes about self/Behavioral Patterns.md` with new observations
+- Extract patterns from user's communication style, work habits, and emotional responses
+- Note timing preferences, communication patterns, and task management approaches
+
+### 3. Update Project Files
+- Modify relevant project briefs and task files
+- Update status of completed work
+- Add new information to appropriate project folders
+- Maintain accurate project status across all files
+
+### 4. Implement Step by Step
+- Work through todo list systematically
+- Update task status as work progresses
+- Provide clear progress updates
+- Ask for confirmation before moving to next major task
+
+### 5. Provide Numbered Options
+When asking user for decisions, always provide numbered options:
+- Wrong: "Would you like me to do X or Y?"
+- Right: "Would you like me to [1] do X or [2] do Y?"
+
+### 6. Goals-First Decision Making
+When user asks for feedback or decisions:
+- ALWAYS read `Areas/goals.md` first to understand current character development goals
+- Align recommendations with character development objectives (empathy cultivation, feedback reception, etc.)
+- Consider how suggestions support the personalizer-to-empathy transformation journey
+- Reference relevant goals when providing numbered options
+
+## File Organization Rules
+- Keep behavioral patterns in `Notes about self/Behavioral Patterns.md`
+- Update `Tasks.md` with daily action plans
+- Maintain project-specific files in respective project folders
+- Always use absolute paths when possible
+
+## Communication Style
+- Acknowledge user's patterns and preferences
+- Provide structured, actionable responses
+- Focus on implementation over discussion
+- Respect user's time constraints and deadlines
+
+## Task Management
+- Prioritize urgent client work
+- Break down complex projects into manageable steps
+- Track progress systematically
+- Update files in real-time as work progresses

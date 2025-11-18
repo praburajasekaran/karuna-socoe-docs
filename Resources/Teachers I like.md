@@ -1,0 +1,4 @@
+- I love [[Josh Kaufman]] for his synthesis of all the important business concepts. 
+- [[Andrew Huberman]] - behavioural science, neuroscience 
+- [[Charlie Morgan]] - YouTuber - productivity, building a business / agency 
+- [[Steph France]] - YouTuber, He teaches some fantastic methods to do marketing research, build products, run Facebook ad campaigns, etc. So marketing automation basically. 

@@ -1,0 +1,2 @@
+
+So, today, just at [[Date 16/09/25 Time:12:03:03]] I had a call with [[Gokulakrishnan D]] and he wanted to start this project immediately. He said that his team will do the integration part, integration with the website quickly. He also wanted to focus on cold mailing because they don't have a list right now. All the leads that they generate are also like junk, meaning that people are not serious about filling this, meaning they haven't been serious and they just fill the form just like that. 

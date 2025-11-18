@@ -1,0 +1,449 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "seconds",
+              "secondsInterval": 5
+            }
+          ]
+        }
+      },
+      "id": "6aa174e6-1504-41fc-958d-49da94d5d1b0",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -688,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1omA4MPiNBXxOluAxUwC02clImRuPjuSu1qPjRpBWrwA",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "1600857954",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "f4b96387-2690-466d-ab37-f638d25d36ef",
+      "name": "Read Prospects",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        -448,
+        352
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "D09soYtvR2E0jv0e",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Filter prospects that need email content generated and limit to 1 for processing\nconst prospects = [];\n\nfor (const item of $input.all()) {\n  const email1Subject = item.json.email_1_subject;\n  const email1Body = item.json.email_1_body;\n  const copyStatus = item.json.email_1_copy_status;\n  \n  // Process prospects that don't have email content yet, have 'pending' status, or need regeneration\n  if (!email1Subject || !email1Body || \n      email1Subject === 'pending' || email1Body === 'pending' || \n      copyStatus === 'pending' || copyStatus === 'regenerate') {\n    prospects.push(item);\n  }\n}\n\nconsole.log(`Found ${prospects.length} prospects needing email content generation`);\n\n// Return only the first prospect to process one at a time\nreturn prospects.slice(0, 1);"
+      },
+      "id": "f8ffee8c-8708-4712-a165-694db73d2f52",
+      "name": "Filter Prospects for Email Generation",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Prepare personalized prompts for Moonshot AI\nconst results = [];\n\nfor (const item of $input.all()) {\n  const data = item.json;\n  \n  // Handle different possible column name formats\n  const firstName = data.first_name || data['First Name'] || data.firstName || 'Valued Customer';\n  const lastName = data.last_name || data['Last Name'] || data.lastName || '';\n  const companyName = data.company_name || data['Company Name'] || data.companyName || 'Your Company';\n  const city = data.city || data['City'] || data.location || 'your city';\n  const phoneNumber = data.phone_number || data['Phone Number'] || data.phoneNumber || '';\n  const email = data.email || data['Email'] || data.emailAddress || '';\n\n  // Create personalized prompt for Diwali corporate gifting\n  const prompt = `You are an expert email copywriter for Yuukke Gifting, a premium corporate gifting company. Write a personalized Diwali corporate gifting email that addresses the real pain points executives face.\n\nCompany: Yuukke Gifting (https://gift.yuukke.com/)\nKey Features:\n- Premium corporate gift hampers with custom branding\n- Sustainable and eco-friendly packaging\n- Pan-India delivery\n- 20% early booking discount\n- 1000+ happy customers, 20K+ gifts delivered, 95% satisfaction rate\n- Custom hampers based on requirements\n\nTarget Person: ${firstName} ${lastName} at ${companyName} in ${city}\n\nWrite an email that addresses these common executive concerns:\n1. \"Logistical nightmare\" - executives dread the time-consuming coordination\n2. \"Fear of looking amateur\" - worried about cheap gifts damaging brand image\n3. \"Budget anxiety\" - balancing meaningful gestures with cost constraints\n4. \"Remote work challenges\" - reaching distributed teams effectively\n5. \"Waste concerns\" - gifts that end up in trash\n\nEmail Requirements:\n1. Acknowledge their time constraints and logistical stress\n2. Address their fear of amateur-looking gifts\n3. Position Yuukke as the solution that eliminates these headaches\n4. Mention the 20% early booking discount\n5. Reference their company and city for personalization\n6. Keep subject line under 50 characters\n7. Keep email body under 200 words\n8. Use a conversational, understanding tone - like you've been in their shoes\n9. DO NOT include any signature, closing, or contact information in the email body\n\nVary your approach - use different angles like:\n- \"I know how stressful holiday gifting can be...\"\n- \"No more last-minute scrambling for gifts...\"\n- \"Stop worrying about gifts that end up in the trash...\"\n- \"Your team deserves better than generic swag...\"\n\nCRITICAL: You MUST respond with ONLY valid JSON. No additional text, explanations, or formatting outside the JSON.\n\nFormat your response as JSON:\n{\n  \"subject\": \"Your email subject line here\",\n  \"body\": \"Your email body here (NO SIGNATURE)\"\n}\n\nIMPORTANT: \n- Return ONLY the JSON object\n- No markdown formatting\n- No code blocks\n- No additional text\n- Escape quotes properly in the JSON\n- Make each email sound different and relatable\n- Address their specific pain points with empathy and understanding`;\n\n  results.push({\n    ...item,\n    json: {\n      ...data,\n      aiPrompt: prompt,\n      firstName: firstName,\n      lastName: lastName,\n      companyName: companyName,\n      city: city,\n      phoneNumber: phoneNumber,\n      email: email\n    }\n  });\n}\n\nconsole.log(`Prepared ${results.length} AI prompts`);\nreturn results;"
+      },
+      "id": "c6b9f46c-c688-400a-96eb-8bb2a35de023",
+      "name": "Prepare AI Prompts",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse AI response and extract email content\nconst results = [];\n\n// Define the standardized signature\nconst signature = '\\n\\nWarm regards,\\n\\nSenthamarai Gokulakrishnan\\nYuukke Gifting\\nsupport@yuukke.com\\n+91 44 4631 4646';\n\nfor (const item of $input.all()) {\n  try {\n    // Debug: Log what we're getting from AI\n    console.log('AI Response:', JSON.stringify(item.json, null, 2));\n    \n    // Get original data from the Prepare AI Prompts node\n    const originalData = $('Prepare AI Prompts').item.json;\n    \n    // Handle both JSON output format and regular format\n    let aiResponse;\n    if (item.json.subject && item.json.body) {\n      // Direct JSON output format (jsonOutput: true)\n      aiResponse = item.json;\n    } else if (item.json.choices && item.json.choices[0] && item.json.choices[0].message) {\n      // Regular format\n      aiResponse = item.json.choices[0].message.content;\n    } else {\n      // Fallback\n      aiResponse = item.json;\n    }\n    \n    // Try to parse JSON response\n    let emailContent;\n    \n    // Check if we already have the parsed JSON (jsonOutput: true)\n    if (aiResponse && typeof aiResponse === 'object' && aiResponse.subject && aiResponse.body) {\n      emailContent = aiResponse;\n      console.log('Using direct JSON response from AI');\n    } else {\n      // Handle string response - clean and parse\n      let cleanResponse;\n      \n      if (typeof aiResponse === 'string') {\n        cleanResponse = aiResponse.trim();\n      } else {\n        // If it's an object but not the expected format, convert to string\n        cleanResponse = JSON.stringify(aiResponse);\n      }\n      \n      // Remove markdown code blocks if present\n      cleanResponse = cleanResponse.replace(/```json\\s*/g, '').replace(/```\\s*/g, '');\n      \n      // Try to find JSON object in the response\n      const jsonMatch = cleanResponse.match(/\\{[\\s\\S]*\\}/);\n      if (jsonMatch) {\n        cleanResponse = jsonMatch[0];\n      }\n      \n      emailContent = JSON.parse(cleanResponse);\n      console.log('Successfully parsed AI JSON response');\n    }\n    \n    // Clean up any undefined values in the email content\n    const cleanSubject = emailContent.subject ? emailContent.subject.replace(/undefined/g, '').trim() : 'Diwali Corporate Gifting Solution';\n    const cleanBody = emailContent.body ? emailContent.body.replace(/undefined/g, '').trim() : 'Hi there, I hope this email finds you well.';\n    \n    // Append signature to the email body\n    const emailBodyWithSignature = cleanBody + signature;\n    \n    results.push({\n      ...item,\n      json: {\n        ...originalData,\n        email_1_subject: cleanSubject,\n        email_1_body: emailBodyWithSignature,\n        email_1_copy_status: 'generated',\n        ai_response: aiResponse\n      }\n    });\n    \n  } catch (error) {\n    console.error('Error processing AI response:', error);\n    throw new Error(`Failed to process AI response: ${error.message}`);\n  }\n}\n\nconsole.log(`Processed ${results.length} AI responses`);\nreturn results;"
+      },
+      "id": "dd8c7724-0844-43fd-aaf8-e48e7974886e",
+      "name": "Parse AI Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-nano",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-NANO"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "={{ $json.aiPrompt }}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        416,
+        368
+      ],
+      "id": "1e671f71-dbc4-4113-ae23-cdbdcd13c43b",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "F6k8RmtqBCQzYqVn",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1omA4MPiNBXxOluAxUwC02clImRuPjuSu1qPjRpBWrwA",
+          "mode": "list",
+          "cachedResultName": "Gift Yuukke Emailing",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1omA4MPiNBXxOluAxUwC02clImRuPjuSu1qPjRpBWrwA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1600857954,
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1omA4MPiNBXxOluAxUwC02clImRuPjuSu1qPjRpBWrwA/edit#gid=1600857954"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $('Read Prospects').item.json.email }}",
+            "email_1_subject": "={{ $json.email_1_subject }}",
+            "email_1_body": "={{ $json.email_1_body }}",
+            "email_1_copy_status": "={{ $json.email_1_copy_status }}"
+          },
+          "matchingColumns": [
+            "email"
+          ],
+          "schema": [
+            {
+              "id": "first_name",
+              "displayName": "first_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_name",
+              "displayName": "last_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "company_name",
+              "displayName": "company_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "city",
+              "displayName": "city",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "phone_number",
+              "displayName": "phone_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email_1_subject",
+              "displayName": "email_1_subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email_1_body",
+              "displayName": "email_1_body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email_1_copy_status",
+              "displayName": "email_1_copy_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email_1_sending_status",
+              "displayName": "email_1_sending_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "index",
+              "displayName": "index",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "message",
+              "displayName": "message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "logprobs",
+              "displayName": "logprobs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "finish_reason",
+              "displayName": "finish_reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ai_error",
+              "displayName": "ai_error",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        976,
+        352
+      ],
+      "id": "541550d0-e2da-4787-b832-e1a7e6fe6e88",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "D09soYtvR2E0jv0e",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "96c33a4f-2bdd-4b59-ba1b-f5fbb44e7e6f",
+              "leftValue": "={{ $json.email_1_copy_status }}",
+              "rightValue": "pending",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -240,
+        352
+      ],
+      "id": "c385e20a-41d2-4ac2-9531-7d17b75582f4",
+      "name": "If"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Prospects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Prospects": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Prospects for Email Generation": {
+      "main": [
+        [
+          {
+            "node": "Prepare AI Prompts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse AI Response": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare AI Prompts": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Parse AI Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Filter Prospects for Email Generation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "841e0ce2-a026-482c-bee0-39be3522fd2c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "dd962b7a92079eda244c436005351724cb53705584b4dcc798b0ef4fd9b6a0fb"
+  },
+  "id": "Ie6xSPlajXZksk2u",
+  "tags": []
+}
+
+
+
+

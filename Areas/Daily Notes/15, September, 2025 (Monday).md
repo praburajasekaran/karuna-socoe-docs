@@ -1,0 +1,2 @@
+- [[Prabhu Krishnamoorthy]] and [[Karthik Kanan]] came to my office today to learn [[Cursor]]. It was a fun and a long day. 
+- [[Kananvisa.com]] 

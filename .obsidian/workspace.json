@@ -1,0 +1,299 @@
+{
+  "main": {
+    "id": "f67ccdd9c215327e",
+    "type": "split",
+    "children": [
+      {
+        "id": "08177f103986942c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d0bf1821e5529111",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Areas/Daily Notes/10, October, 2025 (Friday).md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "10, October, 2025 (Friday)"
+            }
+          },
+          {
+            "id": "dc987b11baf6239b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "RB Meeting.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "RB Meeting"
+            }
+          },
+          {
+            "id": "2955fdd45d6eb188",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Paretoid Portfolio.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Paretoid Portfolio"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "01a80c078ff4a542",
+    "type": "split",
+    "children": [
+      {
+        "id": "ca6c7965222972a8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "711f5e58c4143a5d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "bdb494114eed21f6",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "a894b8a850f7e1a1",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "cbcf9429838d5c37",
+    "type": "split",
+    "children": [
+      {
+        "id": "df59c4233a764d97",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4f6e159a287ee44c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Projects/Best.so/BEST.SO – TRAVEL CASHBACK CONTENT STRATEGY.pdf",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for BEST.SO – TRAVEL CASHBACK CONTENT STRATEGY"
+            }
+          },
+          {
+            "id": "1750c29cad94bb17",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Projects/Best.so/BEST.SO – TRAVEL CASHBACK CONTENT STRATEGY.pdf",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from BEST.SO – TRAVEL CASHBACK CONTENT STRATEGY"
+            }
+          },
+          {
+            "id": "f611836c2c22e1ec",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "f61295c472897476",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Projects/Best.so/BEST.SO – TRAVEL CASHBACK CONTENT STRATEGY.pdf",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of BEST.SO – TRAVEL CASHBACK CONTENT STRATEGY"
+            }
+          },
+          {
+            "id": "a112e32c44672f8e",
+            "type": "leaf",
+            "state": {
+              "type": "journal-calendar",
+              "state": {},
+              "icon": "calendar-days",
+              "title": "Calendar"
+            }
+          },
+          {
+            "id": "3c2cffae9bec550a",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "obsidian-git:Open Git source control": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "d0bf1821e5529111",
+  "lastOpenFiles": [
+    "Resources/erik-ui-heuristics copy.md",
+    "Prabu Portfolio.md",
+    "Areas/Daily Notes/10, October, 2025 (Friday).md",
+    "Projects/Proposals/E-commerce Website Development/Alex Hormozi Offer Stack - E-commerce Website.md",
+    "Projects/SNH Cashews Brand Naming/Alex Hormozi Offer Stack - Brand Naming.md",
+    "RB Meeting.md",
+    "Areas/Daily Notes/09, October, 2025 (Thursday).md",
+    "About Me - Business Networking.md",
+    "Areas/Daily Notes/08, October, 2025 (Wednesday).md",
+    "Paretoid Portfolio.md",
+    "Areas/Daily Notes/08, October, 2025 (Wednesday) (conflict 2025-10-08-12-50-47).md",
+    "Resources/AI and I/date.md",
+    "Resources/AI and I",
+    "Resources/Voice Mining Research/Craft a Deep Research prompt.md",
+    "Projects/Envission Books/pricing-strategy.md",
+    "Areas/Daily Notes/07, October, 2025 (Tuesday).md",
+    "Untitled.canvas",
+    "Untitled 2.md",
+    "Projects/Robert Greene/About Me.md",
+    "Projects/Robert Greene/Strategy.md",
+    "Resources/SOP/Clients 253f8ebd3dbe809e9658c1e2bd997057_all.csv",
+    "Resources/SOP/Clients 253f8ebd3dbe809e9658c1e2bd997057.csv",
+    "Resources/SOP/image 1.png",
+    "Resources/SOP/Social Posts Creation SOP.md",
+    "Resources/SOP/image.png",
+    "Areas/Daily Notes/03, October, 2025 (Friday).md",
+    "Areas/Daily Notes/01, October, 2025 (Wednesday).md",
+    "Areas/Daily Notes/06, October, 2025 (Monday).md",
+    "Untitled 1.md",
+    "Untitled.md",
+    "Resources/SOP",
+    "Projects/Robert Greene",
+    "Social Posts Creation SOP 252f8ebd3dbe8092ad0ee48132d8aaee/Clients 253f8ebd3dbe809e9658c1e2bd997057.csv.md",
+    "Social Posts Creation SOP 252f8ebd3dbe8092ad0ee48132d8aaee/Clients 253f8ebd3dbe809e9658c1e2bd997057.csv 2.md",
+    "Social Posts Creation SOP 252f8ebd3dbe8092ad0ee48132d8aaee",
+    "Projects/Yuukke Gifting Email Marketing/Automation/Email Automator 📧.n8n.json",
+    "Projects/Yuukke Gifting Email Marketing/Automation/Email Automator 📧.blueprint.json",
+    "Projects/Yuukke Gifting Email Marketing/Automation",
+    "Projects/Yuukke Gifting Email Marketing/Gift Yuukke Emailing 1.gsheet",
+    "diary-app/node_modules/unique-filename/coverage/sort-arrow-sprite.png",
+    "diary-app/node_modules/retry/equation.gif",
+    "diary-app/public/icon-512.png",
+    "diary-app/public/icon.svg",
+    "diary-app/public/icon-192.png"
+  ]
+}

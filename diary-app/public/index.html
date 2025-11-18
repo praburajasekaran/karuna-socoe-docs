@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diary AI Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ec4899">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Diary AI">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="time">9:41</span>
+            </div>
+            <div class="status-right">
+                <span class="signal">📶</span>
+                <span class="wifi">📶</span>
+                <span class="battery">🔋</span>
+            </div>
+        </div>
+
+        <!-- Header with Gradient -->
+        <header class="header gradient-header">
+            <div class="header-content">
+                <button class="back-btn">←</button>
+                <div class="header-center">
+                    <h1 class="app-title">Hello, Prabu</h1>
+                    <p class="last-update">Last Update: 27/09/2025</p>
+                </div>
+                <button class="menu-btn">⋯</button>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <h3>Quick Actions</h3>
+                    <button class="sidebar-btn" onclick="showChat()">💬 Chat</button>
+                    <button class="sidebar-btn" onclick="app.startNewChat()">✨ New Chat</button>
+                    <button class="sidebar-btn" onclick="showFiles()">📁 Files</button>
+                    <button class="sidebar-btn" onclick="showSearch()">🔍 Search</button>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Recent Files</h3>
+                    <div id="recentFiles" class="recent-files">
+                        <!-- Recent files will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home/Welcome Screen -->
+            <div id="homeView" class="view active">
+                <div class="home-container">
+                    <!-- Suggested Actions -->
+                    <div class="suggested-actions">
+                        <button class="action-pill" onclick="askQuestion('What are my current goals?')">What are my current goals?</button>
+                        <button class="action-pill" onclick="askQuestion('Show me my behavioral patterns')">Show me my behavioral patterns</button>
+                        <button class="action-pill" onclick="askQuestion('What projects am I working on?')">What projects am I working on?</button>
+                        <button class="action-pill" onclick="askQuestion('Help me reflect on my progress')">Help me reflect on my progress</button>
+                        <button class="action-pill" onclick="askQuestion('Tell me about my health and wellness')">Health & Wellness</button>
+                    </div>
+
+                    <!-- Popular Topics -->
+                    <div class="popular-topics">
+                        <div class="topics-header">
+                            <h3>Popular Topics</h3>
+                            <a href="#" class="see-all">See all</a>
+                        </div>
+                        
+                        <!-- Feature Cards -->
+                        <div class="feature-cards">
+                            <div class="feature-card">
+                                <div class="card-icon">🧠</div>
+                                <h4>AI in Personal Development</h4>
+                                <p>Transforming self-reflection and growth tracking for improved personal outcomes.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="card-icon">💡</div>
+                                <h4>AI and Creativity</h4>
+                                <p>Empowering personal insights with innovative tools and endless creative possibilities.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Interface -->
+            <div id="chatView" class="view">
+                <div class="chat-container">
+                    <div id="chatMessages" class="chat-messages">
+                        <!-- Chat messages will be loaded here -->
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <div class="chat-input-wrapper">
+                            <button class="input-add-btn">+</button>
+                            <input type="text" id="chatInput" placeholder="Type a message..." class="chat-input">
+                            <button class="input-mic-btn">🎤</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Files View -->
+            <div id="filesView" class="view">
+                <div class="files-container">
+                    <div class="files-header">
+                        <h2>Your Diary Files</h2>
+                        <div class="files-controls">
+                            <input type="text" id="filesSearch" placeholder="Search files..." class="search-input">
+                            <select id="filesFilter" class="filter-select">
+                                <option value="all">All Files</option>
+                                <option value="daily">Daily Notes</option>
+                                <option value="projects">Projects</option>
+                                <option value="goals">Goals & Patterns</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="filesList" class="files-list">
+                        <!-- Files will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search View -->
+            <div id="searchView" class="view">
+                <div class="search-container">
+                    <div class="search-header">
+                        <h2>Search Your Diary</h2>
+                        <div class="search-input-container">
+                            <input type="text" id="searchInput" placeholder="Search across all your notes..." class="search-input-large">
+                            <button id="searchBtn" class="search-btn">Search</button>
+                        </div>
+                    </div>
+                    <div id="searchResults" class="search-results">
+                        <!-- Search results will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile View -->
+            <div id="profileView" class="view">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <h2>Your Profile</h2>
+                    </div>
+                    <div class="profile-content">
+                        <div class="profile-card">
+                            <div class="profile-avatar">
+                                <span class="avatar-text">P</span>
+                            </div>
+                            <h3>Prabu Rajasekaran</h3>
+                            <p class="profile-subtitle">Diary AI User</p>
+                        </div>
+                        
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">127</span>
+                                <span class="stat-label">Total Entries</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">15</span>
+                                <span class="stat-label">Active Projects</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">8</span>
+                                <span class="stat-label">Goals Tracked</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-actions">
+                            <button class="profile-action-btn">
+                                <span class="action-icon">⚙️</span>
+                                Settings
+                            </button>
+                            <button class="profile-action-btn">
+                                <span class="action-icon">📊</span>
+                                Analytics
+                            </button>
+                            <button class="profile-action-btn">
+                                <span class="action-icon">💾</span>
+                                Export Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" onclick="showHome()">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Home</span>
+            </button>
+            <button class="nav-item" onclick="showChat()">
+                <span class="nav-icon">💬</span>
+                <span class="nav-label">Chat</span>
+            </button>
+            <button class="nav-item" onclick="showFiles()">
+                <span class="nav-icon">📖</span>
+                <span class="nav-label">Notes</span>
+            </button>
+            <button class="nav-item" onclick="showProfile()">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Profile</span>
+            </button>
+        </nav>
+
+        <!-- File Viewer Modal -->
+        <div id="fileModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">File Content</h3>
+                    <button id="closeModal" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="modalContent" class="file-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

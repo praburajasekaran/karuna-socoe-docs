@@ -1,0 +1,174 @@
+(Transcribed by TurboScribe.ai. Go Unlimited to remove this message.)
+
+(0:08 - 0:20)
+Welcome back to another lesson and this is going to be a quick lesson in uploading your book on KDP. So let's get right into it. So the first thing you need to do is to sign in if you already have an account or sign up through here.
+
+(0:20 - 0:29)
+I'm not going to show you how to sign up because it's a very simple process. Just go through the prompts, fill in the information and you are good to go. Once you sign in, it'll look like this.
+
+(0:29 - 0:43)
+So, to upload a book, you want to come over here to click on create and let's start with the Kindle e-book. So we're going to do both Kindle e-book and paperback, but let's start with the Kindle e-book. So click on create e-book.
+
+(0:44 - 0:53)
+All right. So for the title, I will just put decluttering made simple, subtitle, test title. Okay.
+
+(0:53 - 1:02)
+And for the series name, this is where you want to create a series. It's very important to create a series. Even if this is your first book, just create a series and add this book into the series.
+
+(1:02 - 1:16)
+In the future, when you publish book number two, book number three, you can add the book into the series as well. And whenever you want to edit the order of the books in the series or, you know, change the series name, you can do that anytime. So don't think too hard on this.
+
+(1:16 - 1:25)
+So just click on add series details and we'll be selecting new series and put main content. Okay. And go to series setup.
+
+(1:27 - 1:33)
+And all you have to do here is really name the series. So we're going to put decluttering series. Okay.
+
+(1:33 - 1:41)
+Name is something very simple and short. So we're going to put decluttering series, keep it at ordered. You don't have to put any description, submit updates, and that's what you have to do.
+
+(1:43 - 1:54)
+For the edition number, you don't really have to do anything if it's especially your first edition. Put the author name right here. Most likely will not have contributors for the description.
+
+(1:54 - 2:06)
+Copy, paste the description that you got. I'm going to do test here and obviously you want to format it here. So let's just say your description is like a test, test, test, test, test, test.
+
+(2:07 - 2:13)
+Okay. So this is your hook. So for the hook, I like to do heading four bold, remove space.
+
+(2:13 - 2:28)
+This is the body text. And now we have the book description or I'm sorry, the bullet points. So in this book you will discover and these are the bullet points, which you can simply do this.
+
+(2:29 - 2:54)
+Okay. And for the call to action, we'll just do if you're ready to start your decluttering journey, click the buy now button and get started today. Okay.
+
+(2:54 - 3:08)
+So this is your call to action. We're going to format once again to heading four bold and in your body text too. You know, if there's some things that you want to highlight, uh, you can put it in bold underline italicize the book title right inside.
+
+(3:09 - 3:21)
+So as an example, inside decluttering made simple. Okay. We're going to italicize the book title right here.
+
+(3:21 - 3:28)
+Okay. So that's how you do the description and for the publishing rights, just keep it at I own the copyright and hold the necessary publishing rights. Okay.
+
+(3:28 - 3:34)
+Never change it to, this is a public domain work, uh, if it's not. So let's talk about the keywords next. All right.
+
+(3:34 - 3:43)
+So for the seven keywords box, there's a couple of ways of doing this. One is to just put a single keyword like this. In this case, we just have ketogenic diet.
+
+(3:43 - 4:02)
+Now, if you do this, uh, where you just put one keyword in the entire box, the way the algorithm works is it'll rank stronger on this keyword compared to if you do multiple keywords. Okay. A multiple keywords is something like this where you put, uh, multiple keywords inside the same box.
+
+(4:02 - 4:28)
+So in this case, we have ketogenic diet recipes guide, cookbooks for beginner. So what this does is Amazon automatically mix and match every single word within the same box. So you will rank not only for ketogenic diet, not only for recipes guide cookbook for beginner, but you also rank for ketogenic diet recipes, ketogenic diet guide, ketogenic diet cookbook, ketogenic diet for beginners.
+
+(4:28 - 4:48)
+You will also rank, let's say a cookbook for beginner, cookbook guide, cookbook recipes, cookbook diet, et cetera. So all the combinations. So this works well if you want to rank wider in many, many different keywords, but typically the ranking is weaker than if you just put one keyword.
+
+(4:48 - 5:08)
+So which one should you do? Well, my suggestion is to do both. So if you have a keyword that you really want to make sure you rank for, then you probably just want to use only that keyword per box. But if you have a bunch of keywords that you kind of want to rank for, but it's not really important to rank on page one for it, then you can mix and match and put it all in one box.
+
+(5:08 - 5:16)
+So typically what I do is I have about three keywords where I put one keyword per box. Okay. So I use up three boxes for that.
+
+(5:16 - 5:22)
+And the rest, I just put a bunch of keywords and try and mix and match and, you know, cast a wide net. All right. Next is the categories.
+
+(5:22 - 5:34)
+So just click on choose categories here and you're going to choose three categories. That is the most relevant to your topic. So go and check out what categories are available and pick the one that you think is closest to your book topic.
+
+(5:34 - 5:43)
+In my case is a decluttering book. So it's going to be in the crafts, hobbies and home from here. You can go and niche down into subcategories or you can, you know, choose the broader ones here.
+
+(5:43 - 5:59)
+I recommend you go into subcategories a couple of times. The more specific, the better. So in my case, it will be how to home improvements or it could be home design, but I'm going to click on how to and home improvements and maybe it'll be do it yourself out of this.
+
+(5:59 - 6:07)
+I think that's the closest to it, but that's just one category. You can go back and choose another one. So you could select categories in multiple different niches.
+
+(6:07 - 6:22)
+All three categories doesn't have to be from the same chain. Like in this case, it doesn't have to be from crafts, hobbies and home. If I feel like the decluttering topic is relevant enough to self-help and let's say stress management because it is partially, you know, stress management, right? Then I can add it.
+
+(6:22 - 6:33)
+What you don't want to do is to put your book in completely irrelevant categories. So as long as you're adding your books into categories that make sense to be added, then you're fine. So make sure you choose three categories here and click save.
+
+(6:34 - 6:51)
+Unless you have a children's book, you're not going to be selecting any age range as well as grade range here. If you have like a kids, you know, educational book, especially for like, you know, certain age for those kids, then you'll be selecting these two. But for most nonfiction books, you don't have to.
+
+(6:52 - 7:01)
+So save and continue. Next, we're going to be uploading our ebook manuscript. So keep this at no upload your ebook manuscript.
+
+(7:06 - 7:11)
+And next come down and click here. Upload a cover. You already have an upload your cover.
+
+(7:12 - 7:25)
+Now it's going to take a few minutes to process. And once it's done, you can launch previewer and basically preview the book, see how it will look on Kindle, make sure everything looks all right. And once you do so, come over here and save and continue.
+
+(7:26 - 7:36)
+You can skip this part right here. So click here. Now for the final page, what you want to do is enroll your book in KDP select every single book.
+
+(7:36 - 7:47)
+In the beginning, you want to enroll in KDP select. If it has an ebook version, okay. So unless you're doing low content children's books, once again, you will have an ebook version most likely.
+
+(7:47 - 8:02)
+So you want to select, enroll my book in KDP select. This is very, very important because this is how you will be using free promotions as well as Kindle count on deals, which you can only do so if your book is in KDP select. For the territories, keep it at all territories.
+
+(8:02 - 8:12)
+There's no reason to change that. For the marketplace, primary marketplace, amazon.com. Now let's talk about the pricing first. So during the launch, we want to start at 99 cent.
+
+(8:12 - 8:27)
+The reason why is because we want to gather as many sales as possible to rank your books higher. The more sales you get, the more you're telling the Amazon algorithm that your book is in demand, okay. So they will rank your book more and more higher up on page one.
+
+(8:27 - 8:52)
+So that is why in the beginning, you start a free promotion for five days. And then after that, you'll have one to three weeks of the 99 cent period where your book is priced at 99 cent and you gather the sales, then you will raise your book to full price after that launch period. So in terms of the price, once you switch to full price, for Kindle, I recommend staying between $2.99 to $4.99, okay.
+
+(8:52 - 9:14)
+And for paperback, between $12.99 to $14.99. From there, you can slowly increase by $1 every four plus weeks or so as you gather more reviews. The more reviews you have, the more you can command a higher price, okay. Now your long-term goal is to become one of the highest reviewed book in your topic and also be priced at a premium.
+
+(9:15 - 9:28)
+The higher the book is priced, the higher your profit margin, which means you can spend more on ads and still be profitable. So this is going to be your long-term goal and where you want to get to. But in the beginning, you won't have a ton of reviews and that's why you can't ask for that premium price.
+
+(9:29 - 9:48)
+So just price your book around the average of what you see for your competitors. So if all your competitors are around $12.99 and if you feel like your book is around the same in terms of value, then you can price around the same. But if you feel like your book is better than them, right, and once you have enough reviews, then you can price your book higher than your competition.
+
+(9:50 - 10:00)
+So there is no one perfect price that is going to work for every single book. It really depends on your competition and a lot of factors, so you really have to play around with this. So once again, here's the process.
+
+(10:00 - 10:50)
+You want to start at $0.99 for your e-book during the launch process, and for your paperback, I recommend between $9.99 to $11.99, okay? And you want to gradually increase this. Once the launch ends, and for the long-term goal, you want to be pricing your e-books at $3.99 to $9.99, okay? $9.99 is the highest price you can price your book at while obtaining a 70% royalty, okay? And for a paperback, you want to be between $12.99 to $18.99. This is an example of someone who started off with lower price but now they are one of the highest reviewed book in the topic of self-discipline, has 2,000 reviews, and obviously because of that, they can ask for a price of $9.99, which is a premium price, and people still buy it because they see all the reviews. So this is exactly what you want to do as a long-term goal.
+
+(10:51 - 11:21)
+Now for e-books, in the beginning, you want to make sure to select 35% royalties because that's the only way to price your book at $0.99. And once the launch period ends, when you switch over to full price, that is when you switch to 70% royalty later. Amazon ranks your book higher the more sales and reviews you get, and this is why in the beginning, you price your book low for the highest chance of sales even at low reviews, okay? More sales means higher chance of them leaving a review as well. So coming back here, just select 35%.
+
+(11:22 - 11:34)
+You're going to be putting $0.99 in the beginning. And for the other marketplace, Amazon will automatically generate the price. So all you have to do is click Allow Lending, publish your Kindle book.
+
+(11:35 - 12:08)
+Once you're done, just come back to create paperback, and you'll be going through the same process, but this time, KDP will auto-populate most of the boxes because you've already put that in the e-book version. So book title, subtitle, series, author name, description, everything should be transferred over, okay? Even for the category, most likely, you will have two categories transferred over, but sometimes the categories you selected for e-books does not apply to paperback, so there's only one category or zero categories. That's why make sure you have two.
+
+(12:08 - 12:28)
+If not, just choose the two categories that is related, okay? And if your book is low content, select low content. If your book has fonts over 16, then select large print right here. Most likely, you will not be selecting this at this phase, okay? And obviously, select no for adult content unless you have that.
+
+(12:28 - 12:47)
+Save and continue. Now click on assign me a free KDP ISBN. I recommend everyone to start off with a free KDP ISBN rather than buying your own in the beginning, and you don't have to put anything here, and this is where you will be entering the print option.
+
+(12:48 - 13:11)
+So what I do right now is I use cream paper, so black and white interior with cream paper, so that's what you select. If you have white paper, you'll select white paper here. Trim size, let's do 5.5 by 8.5 right here, okay? And no bleed for the most part, but once again, if you have a different trim size or a different setting, then obviously you'll be selecting that.
+
+(13:12 - 13:38)
+For the cover finish, most people agree that matte finish looks better than glossy, so I always select matte. Upload your paperback manuscript right here and upload your cover design right here. Once you're done, KDP will ask you to preview the book, make sure everything looks okay, and you can approve that, meaning that everything looks okay, and then come back and save and continue.
+
+(13:39 - 14:05)
+So for this last page, I'm going to show you through my other book because the last one, I didn't have the file for the book, so it got rejected. So for this last page right here, keep it at all territories. Once again, primary marketplace is Amazon.com. Now I'm showing you an example from my other book that I have, which is my low content book, and because it's a low content, I cannot enroll in expanded distribution, but for you, you should be able to, so you want to click here and enroll in expanded distribution.
+
+(14:06 - 14:32)
+For the pricing, once again, start low, so between $9.99 to $11.99, and then you can slowly raise your price as you gather more reviews. And finally, click on publish and you're good to go. All right, so the last thing I want to show you once again is once your book is live on Amazon, you want to come back to Kindle e-book actions, promote and advertise, and schedule your book on a five-day free promotion.
+
+(14:33 - 14:47)
+So just come down to free book promotion, select the dates for five days, and you're done. So that is it for this lesson. For the action steps, go ahead and upload your book to KDP and set it up on a free book promotion for five days.
+
+(14:47 - 14:49)
+I'll see you guys in the next lesson.
+
+(Transcribed by TurboScribe.ai. Go Unlimited to remove this message.)

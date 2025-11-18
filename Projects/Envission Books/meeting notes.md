@@ -1,0 +1,6 @@
+- [ ] Prabu Rajasekaran will research Royalty Hero to create a comprehensive launch plan and list all requirements for the launch, then regroup by Wednesday to discuss.
+- [ ] Prabu Rajasekaran will find out how the ISBN works in Amazon, including whether re-uploading the file with the ISBN is necessary.
+- [ ] Prabu Rajasekaran will send the pricing information, including factors and best practices.
+- [ ] Prabu Rajasekaran will provide details on the requirements for setting up an Amazon account.
+- [ ] Prabu Rajasekaran will explore offering PDFs or ePubs to buyers, checking on audiobook creation, considering book categories, and determining if 24-page books are allowed as hardcovers.
+- [ ] Prabu Rajasekaran will determine the goodies to offer on the Oshoma website.com and ensure downloadables are metered, requiring email and Amazon purchase verification.

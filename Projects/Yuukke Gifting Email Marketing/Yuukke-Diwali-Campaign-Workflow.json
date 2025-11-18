@@ -1,0 +1,416 @@
+{
+  "name": "Yuukke Diwali Email Campaign",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 2
+            }
+          ]
+        }
+      },
+      "id": "1a2b3c4d-5e6f-7g8h-9i0j-k1l2m3n4o5p6",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "resource": "sheet",
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "id"
+        },
+        "range": "Prospects!A:R",
+        "options": {
+          "headerRow": true
+        }
+      },
+      "id": "2b3c4d5e-6f7g-8h9i-0j1k-l2m3n4o5p6q7",
+      "name": "Read Prospects",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Filter prospects ready for email\nconst today = new Date();\nconst prospects = [];\n\nfor (const item of $input.all()) {\n  const status = item.json.Status;\n  const emailSentDate = item.json['Email Sent Date'];\n  \n  // Process pending prospects\n  if (status === 'pending') {\n    prospects.push(item);\n  }\n  \n  // Process follow-ups (2 days after initial email)\n  if (status === 'sent' && emailSentDate) {\n    const sentDate = new Date(emailSentDate);\n    const daysDiff = (today - sentDate) / (1000 * 60 * 60 * 24);\n    \n    if (daysDiff >= 2) {\n      prospects.push({\n        ...item,\n        json: {\n          ...item.json,\n          isFollowUp: true\n        }\n      });\n    }\n  }\n}\n\n// Limit to 40 emails per batch (daily limit management)\nreturn prospects.slice(0, 40);"
+      },
+      "id": "3c4d5e6f-7g8h-9i0j-1k2l-m3n4o5p6q7r8",
+      "name": "Filter Prospects",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "resource": "sheet",
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Email Accounts",
+          "mode": "name"
+        },
+        "range": "A:J",
+        "options": {
+          "headerRow": true
+        }
+      },
+      "id": "4d5e6f7g-8h9i-0j1k-2l3m-n4o5p6q7r8s9",
+      "name": "Read Email Accounts",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        900,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Smart Account Selection using Google Sheets data\nconst prospects = $input.first().json;\nconst accounts = $input.last().json;\n\nconst today = new Date().toISOString().split('T')[0];\nconst results = [];\n\n// Filter available accounts\nconst availableAccounts = accounts.filter(account => {\n  const lastReset = account['Last Reset Date'];\n  let emailsSentToday = account['Emails Sent Today'] || 0;\n  const dailyLimit = account['Daily Limit'] || 40;\n  const status = account['Status'];\n  \n  // Reset counter if it's a new day\n  if (lastReset !== today) {\n    emailsSentToday = 0;\n  }\n  \n  return status === 'active' && emailsSentToday < dailyLimit;\n});\n\nif (availableAccounts.length === 0) {\n  console.log('No available email accounts - daily limits reached');\n  return [];\n}\n\n// Sort by lowest usage first (load balancing)\navailableAccounts.sort((a, b) => {\n  const usageA = a['Emails Sent Today'] || 0;\n  const usageB = b['Emails Sent Today'] || 0;\n  return usageA - usageB;\n});\n\n// Distribute prospects across available accounts\nlet accountIndex = 0;\n\nfor (let i = 0; i < prospects.length; i++) {\n  const prospect = prospects[i];\n  \n  // Select account with round-robin among available accounts\n  const selectedAccount = availableAccounts[accountIndex % availableAccounts.length];\n  \n  results.push({\n    json: {\n      ...prospect,\n      selectedEmailAccount: selectedAccount['Account ID'],\n      selectedEmailAddress: selectedAccount['Email Address'],\n      smtpHost: selectedAccount['SMTP Host'],\n      smtpPort: selectedAccount['SMTP Port'],\n      smtpUser: selectedAccount['Username'],\n      smtpPass: selectedAccount['App Password'],\n      currentUsage: selectedAccount['Emails Sent Today'] || 0\n    }\n  });\n  \n  // Update usage counter for next selection\n  selectedAccount['Emails Sent Today'] = (selectedAccount['Emails Sent Today'] || 0) + 1;\n  accountIndex++;\n}\n\nreturn results;"
+      },
+      "id": "4e5f6g7h-8i9j-0k1l-2m3n-o4p5q6r7s8t9",
+      "name": "Select Email Account",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Generate personalized email content\nfunction generatePersonalizedEmail(prospect) {\n  const {\n    'First Name': firstName,\n    'Company Name': company,\n    'Job Title': jobTitle,\n    'Industry': industry,\n    'Location/City': location,\n    isFollowUp\n  } = prospect;\n\n  if (isFollowUp) {\n    return generateFollowUpEmail(prospect);\n  } else {\n    return generateInitialEmail(prospect);\n  }\n}\n\nfunction generateInitialEmail(prospect) {\n  const {\n    'First Name': firstName,\n    'Company Name': company,\n    'Job Title': jobTitle,\n    'Industry': industry,\n    'Location/City': location\n  } = prospect;\n\n  // Role-based personalization\n  let roleMessage = \"\";\n  const title = jobTitle.toLowerCase();\n  \n  if (title.includes('founder') || title.includes('ceo')) {\n    roleMessage = \"As a founder, you understand the importance of strengthening business relationships during festival seasons.\";\n  } else if (title.includes('hr') || title.includes('people')) {\n    roleMessage = \"Managing employee appreciation and client relationships during Diwali can be quite challenging for People Ops leaders.\";\n  } else if (title.includes('account') || title.includes('relationship')) {\n    roleMessage = \"Maintaining strong client relationships through thoughtful Diwali gestures is crucial for account success.\";\n  } else {\n    roleMessage = \"Corporate gifting during Diwali is an excellent way to strengthen business relationships.\";\n  }\n\n  // Industry-specific gifts\n  let giftSuggestions = \"premium corporate gift hampers\";\n  const ind = industry.toLowerCase();\n  \n  if (ind.includes('technology') || ind.includes('software')) {\n    giftSuggestions = \"tech accessories, premium desk items, or curated wellness hampers\";\n  } else if (ind.includes('finance') || ind.includes('banking')) {\n    giftSuggestions = \"elegant corporate gifts, premium dry fruits, or luxury stationery sets\";\n  } else if (ind.includes('healthcare')) {\n    giftSuggestions = \"wellness-focused gifts, organic hampers, or mindfulness items\";\n  }\n\n  const subject = `Hi ${firstName}, Diwali Gifting Solutions for ${company}`;\n  \n  const body = `Hi ${firstName},\n\n${roleMessage}\n\nI noticed ${company} might be planning Diwali gifts for clients and employees this year. We specialize in creating premium corporate gifting experiences that reflect your brand's professionalism.\n\nFor ${industry} companies like yours, we typically recommend ${giftSuggestions} that create lasting impressions.\n\nOur Diwali collection includes:\n✓ Premium gift hampers with custom branding\n✓ Personalized packaging and messaging\n✓ Pan-India delivery (including ${location})\n✓ Corporate bulk pricing\n\nYou can explore our Diwali corporate collection here: https://yuukke.com/diwali-corporate\n\nWould you be interested in a quick 10-minute call to discuss ${company}'s gifting requirements?\n\nBest regards,\nPrabu Rajasekaran\nYuukke Gifting\n+91-XXXXXXXXXX | prabu@yuukke.com`;\n\n  return { subject, body };\n}\n\nfunction generateFollowUpEmail(prospect) {\n  const {\n    'First Name': firstName,\n    'Company Name': company\n  } = prospect;\n\n  const subject = `${firstName}, Quick follow-up on ${company}'s Diwali gifting`;\n  \n  const body = `Hi ${firstName},\n\nI wanted to follow up on my previous email about Diwali corporate gifting solutions for ${company}.\n\nWith Diwali approaching quickly, many of our clients are finalizing their gifting strategies now to ensure timely delivery.\n\nIf you're still exploring options, I'd be happy to share:\n• A quick catalog of our most popular corporate gifts\n• Bulk pricing for ${company}\n• Express delivery options for last-minute orders\n\nJust reply to this email or give me a call at +91-XXXXXXXXXX.\n\nBest regards,\nPrabu Rajasekaran\nYuukke Gifting`;\n\n  return { subject, body };\n}\n\n// Process all prospects\nconst results = [];\n\nfor (const item of $input.all()) {\n  const emailContent = generatePersonalizedEmail(item.json);\n  \n  results.push({\n    ...item,\n    json: {\n      ...item.json,\n      emailSubject: emailContent.subject,\n      emailBody: emailContent.body\n    }\n  });\n}\n\nreturn results;"
+      },
+      "id": "5e6f7g8h-9i0j-1k2l-3m4n-o5p6q7r8s9t0",
+      "name": "Generate Email Content",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $json.smtpUser }}",
+        "toEmail": "={{ $json.Email }}",
+        "subject": "={{ $json.emailSubject }}",
+        "text": "={{ $json.emailBody }}",
+        "options": {
+          "allowUnauthorizedCerts": false
+        },
+        "credentials": {
+          "smtp": {
+            "host": "={{ $json.smtpHost }}",
+            "port": "={{ $json.smtpPort }}",
+            "secure": false,
+            "user": "={{ $json.smtpUser }}",
+            "password": "={{ $json.smtpPass }}"
+          }
+        }
+      },
+      "id": "7g8h9i0j-1k2l-3m4n-5o6p-q7r8s9t0u1v2",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1560,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "resource": "sheet",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "id"
+        },
+        "columnToMatchOn": "Email",
+        "valueToMatchOn": "={{ $json.Email }}",
+        "options": {},
+        "fieldsUi": {
+          "values": [
+            {
+              "column": "Status",
+              "value": "sent"
+            },
+            {
+              "column": "Email Sent Date",
+              "value": "={{ new Date().toISOString() }}"
+            },
+            {
+              "column": "Email Account Used",
+              "value": "={{ $json.selectedEmailAccount }}"
+            }
+          ]
+        }
+      },
+      "id": "8h9i0j1k-2l3m-4n5o-6p7q-r8s9t0u1v2w3",
+      "name": "Update Prospect Status",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1780,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Update Email Account Usage\nconst sentEmails = $input.all();\nconst today = new Date().toISOString().split('T')[0];\n\n// Group by account\nconst accountUpdates = {};\n\nsentEmails.forEach(email => {\n  const accountId = email.json.selectedEmailAccount;\n  if (!accountUpdates[accountId]) {\n    accountUpdates[accountId] = {\n      accountId: accountId,\n      emailsSent: 0\n    };\n  }\n  accountUpdates[accountId].emailsSent++;\n});\n\n// Prepare updates for Google Sheets\nconst updates = Object.values(accountUpdates).map(update => ({\n  json: {\n    'Account ID': update.accountId,\n    'Emails Sent Today': update.emailsSent,\n    'Last Reset Date': today,\n    'Last Updated': new Date().toISOString()\n  }\n}));\n\nreturn updates;"
+      },
+      "id": "9i0j1k2l-3m4n-5o6p-7q8r-s9t0u1v2w3x4",
+      "name": "Prepare Account Updates",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2000,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "resource": "sheet",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Email Accounts",
+          "mode": "name"
+        },
+        "columnToMatchOn": "Account ID",
+        "valueToMatchOn": "={{ $json['Account ID'] }}",
+        "options": {},
+        "fieldsUi": {
+          "values": [
+            {
+              "column": "Emails Sent Today",
+              "value": "={{ $json['Emails Sent Today'] }}"
+            },
+            {
+              "column": "Last Reset Date",
+              "value": "={{ $json['Last Reset Date'] }}"
+            },
+            {
+              "column": "Last Updated",
+              "value": "={{ $json['Last Updated'] }}"
+            }
+          ]
+        }
+      },
+      "id": "0j1k2l3m-4n5o-6p7q-8r9s-t0u1v2w3x4y5",
+      "name": "Update Account Usage",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        2220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "resource": "sheet",
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Campaign Stats",
+          "mode": "name"
+        },
+        "columnToMatchOn": "Date",
+        "valueToMatchOn": "={{ new Date().toISOString().split('T')[0] }}",
+        "options": {},
+        "fieldsUi": {
+          "values": [
+            {
+              "column": "Date",
+              "value": "={{ new Date().toISOString().split('T')[0] }}"
+            },
+            {
+              "column": "Emails Sent",
+              "value": "={{ $input.first().json.totalEmailsSent || $input.all().length }}"
+            },
+            {
+              "column": "Timestamp",
+              "value": "={{ new Date().toISOString() }}"
+            }
+          ]
+        }
+      },
+      "id": "1k2l3m4n-5o6p-7q8r-9s0t-u1v2w3x4y5z6",
+      "name": "Update Campaign Stats",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        2440,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Prospects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Prospects": {
+      "main": [
+        [
+          {
+            "node": "Filter Prospects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Prospects": {
+      "main": [
+        [
+          {
+            "node": "Read Email Accounts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Email Accounts": {
+      "main": [
+        [
+          {
+            "node": "Select Email Account",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select Email Account": {
+      "main": [
+        [
+          {
+            "node": "Generate Email Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Email Content": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email": {
+      "main": [
+        [
+          {
+            "node": "Update Prospect Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Prospect Status": {
+      "main": [
+        [
+          {
+            "node": "Prepare Account Updates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Account Updates": {
+      "main": [
+        [
+          {
+            "node": "Update Account Usage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Account Usage": {
+      "main": [
+        [
+          {
+            "node": "Update Campaign Stats",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-09-16T12:00:00.000Z",
+  "versionId": "1"
+}

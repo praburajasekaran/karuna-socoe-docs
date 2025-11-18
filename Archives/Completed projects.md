@@ -1,0 +1,1 @@
+- We recently completed a logo design project for White Giant Cashews run by [[Ravinder Ramalingam]], who's my friend from college [[Annamalai University]].

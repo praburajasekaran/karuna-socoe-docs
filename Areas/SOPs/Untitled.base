@@ -1,0 +1,9 @@
+views:
+  - type: table
+    name: Table
+    filters:
+      and:
+        - file.folder == "Areas/SOPs"
+    order:
+      - file.name
+      - file.tags

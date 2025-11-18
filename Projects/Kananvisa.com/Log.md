@@ -1,0 +1,2 @@
+- Okay, I have started building this app. I'm very excited about this. And so far I have done the homepage, the login page, the password page, the account page, settings page, the dashboard page, the documents page, the applications page. There are a bunch of pieces. I'm really proud of my work I've done so far. The design is also fantastic.
+- 

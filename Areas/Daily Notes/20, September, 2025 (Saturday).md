@@ -1,0 +1,8 @@
+- [[Cursor]]
+	- how to make an application production ready 
+	- favorite model? 
+	- is it possible to autopush to got on a regular basis 
+	- ask it to understand the code first, summarise and then make changes. 
+	- linting rules eslint 
+- [[Cursor Meetup]] - No 1
+- 

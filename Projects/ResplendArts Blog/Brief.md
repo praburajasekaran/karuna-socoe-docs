@@ -1,0 +1,2 @@
+- Sent the draft for "Printmaking in the 21st Century" for review [[11, September, 2025 (Thursday)]]
+- 

@@ -1,0 +1,2 @@
+- [ ] Add department pics in the about page
+- [ ] Update logo orange colour throughout 
